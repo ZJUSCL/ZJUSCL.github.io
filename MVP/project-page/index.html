@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners -->
+  <meta name="description" content="MVP: Multiple View Prediction Improves GUI Grounding - A training-free framework that enhances GUI grounding through multi-view inference">
+  <meta property="og:title" content="MVP: Multiple View Prediction Improves GUI Grounding"/>
+  <meta property="og:description" content="A training-free framework that enhances GUI grounding through multi-view inference, addressing coordinate prediction instability"/>
+  <meta property="og:url" content="https://zjuscl.github.io/MVP-Grounding/"/>
+  <meta property="og:image" content="static/images/output.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="MVP: Multiple View Prediction Improves GUI Grounding">
+  <meta name="twitter:description" content="A training-free framework that enhances GUI grounding through multi-view inference">
+  <meta name="twitter:image" content="static/images/output.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="GUI grounding, multi-view prediction, GUI agents, computer vision, vision-language models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MVP: Multiple View Prediction Improves GUI Grounding</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MVP: Multiple View Prediction Improves GUI Grounding</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><p>Yunzhu Zhang<sup>1</sup>,</p></span>
+              <span class="author-block"><p>Zeyu Pan<sup>2</sup>,</p></span>
+              <span class="author-block"><p>Zhengwen Zeng<sup>3</sup>,</p></span>
+              <span class="author-block"><p>Shuheng Shen<sup>3</sup>,</p></span>
+              <span class="author-block"><p>Changhua Meng<sup>3</sup>,</p></span>
+              <span class="author-block"><p>Linchao Zhu<sup>1,†</sup></p></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Zhejiang University</span>
+              <span class="author-block"><sup>2</sup>Hangzhou Dianzi University</span>
+              <span class="author-block"><sup>3</sup>Ant Group</span>
+              <span class="eql-cntrb"><small><br><sup>†</sup>Corresponding Author</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://github.com/ZJUSCL/MVP" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2512.08529" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We identify the <strong>Prediction Instability</strong> issue of existing GUI grounding models : They are highly sensitive to input visual variations, making single-view predictions unreliable and limiting their performance.
+            Based on this, We propose <strong>Multi-View Prediction (MVP)</strong>, a training-free framework that enhances models' GUI Grounding capability. 
+            MVP crops different regions from original screenshot to get different prediction and then cluster them through k-means. The final result is decided by the centroid coordinate of the largest cluster. 
+            <br>
+            <br>
+            MVP comprises two components: (1) <strong>Attention-Guided View Proposal</strong>, which derives diverse views guided by instruction-to-image attention scores, and (2) <strong>Multi-Coordinates Clustering</strong>, which ensembles predictions by selecting the centroid of the densest spatial cluster.
+            
+            Extensive experiments demonstrate MVP's effectiveness across various models and benchmarks.
+          </p>
+        </div>
+
+        <!-- <figure style="margin: 2rem auto; max-width: 100%;">
+          <img src="./static/images/arch.pdf" alt="MVP framework overview" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;">Figure 1: <strong>Overview of MVP Framework.</strong> Given a high-resolution screenshot and user instruction, MVP first generates multiple cropped views using attention-guided view proposal. Each view is processed independently by the grounding model to produce coordinate predictions. These predictions are then aggregated through multi-coordinate clustering to produce the final robust prediction.</p>
+          </figcaption>
+        </figure> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Coordinate Prediction Instability</h2>
+        <div class="content has-text-justified">
+          <p>
+            Existing GUI grounding models exhibit significant coordinate prediction instability. Minor visual perturbations, such as adding a 28-pixel border, can drastically alter predictions—with average coordinate shifts of 193 pixels. This instability is particularly severe for high-resolution screenshots with small UI elements. Our analysis reveals that single-view predictions are highly sensitive to input variations, making current models unreliable for practical GUI agent applications.
+          </p>
+        </div>
+
+        <!-- Two figures side by side: Instability demonstration and prediction distribution -->
+        <div class="columns" style="margin: 2rem 0;">
+          <div class="column">
+            <figure style="margin: 0;">
+              <img src="./static/images/fig1.png" alt="Prediction instability demonstration" style="width: 100%; height: auto;">
+              <figcaption class="has-text-centered" style="margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.4;">
+                <strong>Figure 1:</strong> An example of prediction instability from ScreenSpot-Pro. The instruction is "save image in a specific format". Slightly shifting the screenshot causes significantly different predicted coordinates.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="column">
+            <figure style="margin: 0;">
+              <img src="./static/images/prediction_analysis_pie_chart.png" alt="Prediction distribution analysis" style="width: 100%; height: auto;">
+              <figcaption class="has-text-centered" style="margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.4;">
+                <strong>Figure 2:</strong> We evaluate model instability by adding a 28-pixel border to ScreenSpot-Pro images. This minor visual perturbation causes 7.3% correct predictions to wrong, and 7.8% wrong predictions to become correct.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Analysis results: Resolution and bbox area -->
+        <div class="columns" style="margin: 2rem 0;">
+          <div class="column">
+            <figure style="margin: 0;">
+              <img src="./static/images/resolution_analysis.png" alt="Resolution analysis" style="width: 100%; height: auto;">
+              <figcaption class="has-text-centered" style="margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.4;">
+                <strong>Figure 3:</strong> When analyzing the distance between the two predicted coordinates grouped by image resolution, we observe that instability increases significantly with higher resolutions.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="column">
+            <figure style="margin: 0;">
+              <img src="./static/images/bbox_area_analysis_2560x1440.png" alt="Bbox area analysis" style="width: 100%; height: auto;">
+              <figcaption class="has-text-centered" style="margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.4;">
+                <strong>Figure 4:</strong> Similarly, when grouping by the area of the target region, we find that instability is more pronounced for smaller UI elements.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Multi-view potential -->
+        <figure style="margin: 2rem auto; max-width: 70%;">
+          <img src="./static/images/overall_accuracy_vs_views.png" alt="Accuracy vs views" style="width: 100%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;"><strong>Figure 5:</strong> We crop different views from the original screenshots in ScreenSpot-Pro and then perform inference separately on them using GTA1-7B. The pass@N accuracy (whether at least one prediction among N views is correct) improves with the number of views increasing, indicating the model possesses the ability to predict correctly.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">MVP Framework</h2>
+        <div class="content has-text-justified">
+        </div>
+
+        <figure style="margin: 2rem auto; max-width: 100%;">
+          <img src="./static/images/arch.png" alt="MVP framework architecture" style="width: 90%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;"><strong>Figure 6:</strong> Overview of the MVP framework pipeline, consisting of Attention-Guided View Proposal and Multi-Coordinate Clustering stages. The framework generates diverse views through attention-guided cropping and aggregates predictions via spatial clustering. Specifically, MVP takes the user instruction and screenshot firstly, forwarding through the language model to derive attention scores from the instruction to each visual token. Then, the top-k scoring tokens are selected, and an h×w sub-region is cropped around the center of each corresponding visual patch. These sub-regions are ranked by the number of top-k tokens they contain. The top-m regions are chosen and enlarged to form the final set of views. The model independently predicts coordinates for each view. Finally, MVP aggregates all the predictions by clustering the coordinates based on spatial proximity and outputs the center of the largest cluster as the final prediction.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We conduct comprehensive evaluations across diverse grounding models and scales to assess the generalizability and effectiveness of our MVP framework, including UI-TARS-1.5-7B, GTA1-7B, and Qwen3VL-{8B, 32B}-Instruct. The models are evaluated on three challenging GUI grounding benchmarks: (1) <strong>ScreenSpot-Pro</strong>, a benchmark for evaluating visual grounding on high-resolution screenshots of professional software; (2) <strong>UI-Vision</strong>, a diverse benchmark sampling from 83 applications across 6 domains; (3) <strong>OS-World-G</strong>, a real-world interactive benchmark containing 564 screenshots from OSWorld, focusing on operating-system tasks.
+          </p>
+        </div>
+
+        <figure style="margin: 2rem auto; max-width: 100%;">
+          <img src="./static/images/sspro.png" alt="ScreenSpot-Pro results" style="width: 90%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;"><strong>Table 1:</strong> Evaluation results on ScreenSpot-Pro benchmark. MVP achieves significant improvements: GTA1-7B (+11.9), UI-TARS-1.5-7B (+14.2), and Qwen3VL-8B-Instruct (+10.3). Most notably, Qwen3VL-32B-Instruct with MVP reaches 74.0%, establishing new state-of-the-art results. Our method ranks <strong>1st</strong> and <strong>3rd</strong> overall on the <a href="https://gui-agent.github.io/grounding-leaderboard/" target="_blank">Leaderboard</a>.</p>
+          </figcaption>
+        </figure>
+
+        <figure style="margin: 2rem auto; max-width: 100%;">
+          <img src="./static/images/uivision.png" alt="UI-Vision results" style="width: 90%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;"><strong>Table 2:</strong> Evaluation results on UI-Vision benchmark. MVP brings average gains of +3.4 to +4.7 points for 7B/8B models. Qwen3VL-32B-Instruct with MVP achieves state-of-the-art performance with +7.7 points (36.4 → 44.1).</p>
+          </figcaption>
+        </figure>
+
+        <figure style="margin: 2rem auto; max-width: 100%;">
+          <img src="./static/images/os-world-g.png" alt="OS-World-G results" style="width: 50%; height: auto; display: block; margin: 0 auto;">
+          <figcaption class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem; line-height: 1.5;">
+            <p style="margin-bottom: 0.8rem;"><strong>Table 3:</strong> Evaluation results on OS-World-G benchmark. MVP demonstrates consistent performance improvements in real-world interactive scenarios, with average gains of +0.3 to +4.9 points across different models.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhang2025mvp,
+  title={MVP: Multiple View Prediction Improves GUI Grounding},
+  author={Zhang, Yunzhu and Pan, Zeyu and Zeng, Zhengwen and Shen, Shuheng and Meng, Changhua and Zhu, Linchao},
+  journal={arXiv preprint arXiv:2512.08529},
+  year={2025},
+  url={https://github.com/ZJUSCL/MVP}
+}</code></pre>
+  </div>
+</section>
+<!--End BibTex citation -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
