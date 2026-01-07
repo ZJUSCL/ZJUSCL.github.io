@@ -55,7 +55,7 @@ const CONFIG = {
 
   links: {
     paper: "https://arxiv.org/pdf/2601.01483",
-    slides: "static/pdfs/slides.pdf",
+    slides: "https://github.com/ZJUSCL/ZJUSCL.github.io/blob/main/ADPO/static/pdfs/slides.pdf",
     supplementary: null,
     code: "https://github.com/ZJUSCL/ADPO",
     arxiv: "https://arxiv.org/abs/2601.01483",
