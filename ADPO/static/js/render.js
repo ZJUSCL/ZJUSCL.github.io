@@ -181,8 +181,6 @@
       affiliationEl.innerHTML = `
         <span class="affiliation-line">${affList}</span>
         ${conference ? `<span class="conference-line">${conference}</span>` : ''}
-        ${showEqualContribution ? '<span class="eql-cntrb"><sup>*</sup>Equal Contribution</span>' : ''}
-        ${authors.some(a => a.corresponding) ? '<span class="eql-cntrb"><sup>†</sup>Corresponding Author</span>' : ''}
       `;
     }
   }

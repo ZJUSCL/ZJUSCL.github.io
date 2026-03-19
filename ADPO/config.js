@@ -37,7 +37,7 @@ const CONFIG = {
   ],
 
   affiliations: [
-    "College of Computer Science and Technology, Zhejiang University",
+    "Zhejiang University",
     "Venus Team, Ant Group"
   ],
 
@@ -54,7 +54,7 @@ const CONFIG = {
   // ============================================================================
 
   links: {
-    paper: "https://arxiv.org/pdf/2601.01483",
+    paper: null,
     slides: "https://github.com/ZJUSCL/ZJUSCL.github.io/blob/main/ADPO/static/pdfs/slides.pdf",
     supplementary: null,
     code: "https://github.com/ZJUSCL/ADPO",

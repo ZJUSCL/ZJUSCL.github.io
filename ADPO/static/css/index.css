@@ -118,8 +118,10 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-weight: 800 !important;
     color: var(--text-primary) !important;
-    margin-bottom: 2rem !important;
-    line-height: 1.1 !important;
+    font-size: 2.65rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.02em;
 }
 
 .publication-banner {
@@ -149,6 +151,12 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-weight: 500;
     margin-bottom: 0.5rem;
+}
+
+#authors-list {
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    line-height: 1.25;
+    white-space: nowrap;
 }
 
 /* Author affiliations layout */
@@ -226,7 +234,7 @@ body {
 
 .author-block {
   display: inline-block;
-  margin-right: 0.5rem;
+  margin-right: 0.15rem;
 }
 
 .publication-banner img {
@@ -633,13 +641,18 @@ code {
   }
   
   .publication-title {
-    font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 1.5rem !important;
+    font-size: 2.2rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1.25rem !important;
   }
   
   .publication-authors {
     font-size: 1rem !important;
+  }
+
+  #authors-list {
+    font-size: 1rem !important;
+    white-space: normal;
   }
   
   .button {
@@ -682,7 +695,8 @@ code {
 
 @media screen and (max-width: 480px) {
   .publication-title {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
+    line-height: 1.1 !important;
   }
   
   .hero-body {
@@ -728,6 +742,10 @@ code {
   
   .publication-header .hero-body {
     padding: 4rem 2rem 3rem;
+  }
+
+  .publication-title {
+    font-size: 2.4rem !important;
   }
 }
 
@@ -794,6 +812,4 @@ a:focus {
     box-shadow: none !important;
   }
 }
-
-
 
