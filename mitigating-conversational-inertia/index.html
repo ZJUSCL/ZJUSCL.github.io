@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Project page for Mitigating Conversational Inertia in Multi-Turn Agents.">
+  <meta name="keywords" content="Conversational Inertia, Multi-Turn Agents, Large Language Models, LLM Agents, ICML 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mitigating Conversational Inertia in Multi-Turn Agents</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Mitigating Conversational Inertia in Multi-Turn Agents</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yangwan7.github.io/">Yang Wan</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Zheng Cao<sup>1</sup>,</span>
+            <span class="author-block">
+              Zhenhao Zhang<sup>2</sup>,
+            </span>
+            <span class="author-block">
+              Zhengwen Zeng<sup>3</sup>,
+            </span>
+            <span class="author-block">
+              Shuheng Shen<sup>3</sup>,
+            </span>
+            <span class="author-block">
+              Changhua Meng<sup>3</sup>,
+            </span>
+            <span class="author-block">
+              Linchao Zhu<sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>2</sup>University of Rochester,</span>
+            <span class="author-block"><sup>3</sup>Ant Group</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">ICML 2026</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2602.03664"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2602.03664"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Kelatte/mitigating-conversational-inertia"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/kelatte/qwen3_8b_dpo_mitigating_inertia"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-brain"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/kelatte/qwen3-8b-dpo-agentgym-rft-data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-vcentered teaser-block">
+      <div class="column is-5 teaser-text">
+        <p class="teaser-kicker">Conversational inertia</p>
+        <h2 class="title is-3 teaser-title">
+          Multi-turn agents can over-imitate their own previous responses.
+        </h2>
+        <p class="teaser-copy">
+          We show that long interaction histories amplify diagonal attention to prior assistant
+          outputs, biasing agents toward imitation when they should keep exploring.
+        </p>
+      </div>
+      <div class="column is-7">
+        <figure class="paper-figure teaser-figure">
+          <img src="./static/images/paper/motivation.png"
+               alt="Motivation figure comparing few-shot prompting, conversation, and agent scenarios."/>
+          <figcaption>
+            Conversational inertia emerges when an agent treats its previous actions as
+            demonstrations to mimic rather than experiences to learn from.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified abstract-content">
+          <p>
+            Large language models excel as few-shot learners when provided with appropriate
+            demonstrations, yet this strength becomes problematic in multi-turn agent scenarios,
+            where LLMs erroneously mimic their own previous responses as few-shot examples. Through
+            attention analysis, we identify <strong>conversational inertia</strong>, a phenomenon
+            where models exhibit strong diagonal attention to previous responses, which is
+            associated with imitation bias that constrains exploration. This reveals a tension when
+            transforming few-shot LLMs into agents: longer context enriches environmental feedback
+            for exploitation, yet also amplifies conversational inertia that undermines exploration.
+            Our key insight is that for identical states, actions generated with longer contexts
+            exhibit stronger inertia than those with shorter contexts, enabling construction of
+            preference pairs without environment rewards. Based on this, we propose
+            <strong>Context Preference Learning</strong> to calibrate model preferences to favor
+            low-inertia responses over high-inertia ones. We further provide context management
+            strategies at inference time to balance exploration and exploitation. Experimental
+            results across eight agentic environments and one deep research scenario validate that
+            our framework reduces conversational inertia and achieves performance improvements.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Motivation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Multi-turn LLM agents solve tasks by repeatedly observing the environment, generating
+            actions, and appending the resulting interaction history to the next prompt. This
+            design gives the model useful feedback for exploitation, but it also changes the role
+            of context: previous assistant outputs can start to look like few-shot demonstrations
+            written by the model itself.
+          </p>
+          <p>
+            We find that longer histories do not always help. Agent performance can degrade at
+            moderate context lengths that remain far below modern model capacity limits. Attention
+            analysis suggests a concrete mechanism behind this degradation: models increasingly
+            attend to their own previous responses, especially along token-aligned diagonal
+            patterns, and become biased toward repeating earlier behavior.
+          </p>
+          <p>
+            We call this failure mode <strong>conversational inertia</strong>. It appears as strong
+            diagonal attention to previous assistant responses and can make the model reproduce the
+            structure of earlier actions instead of adapting to new observations. This motivates our
+            two complementary mitigations: Context Preference Learning and Clip Context.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <figure class="paper-figure">
+          <img src="./static/images/paper/base_problems_c.png"
+               alt="Attention ratio statistics across conversation rounds."/>
+          <figcaption>
+            As conversation rounds increase, attention to previous assistant outputs grows while
+            attention to user inputs remains comparatively stable.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <!--/ Motivation. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified section-lead">
+          <p>
+            Our framework targets inertia at two levels. At the model level, Context Preference
+            Learning teaches the model to prefer lower-inertia actions generated from shorter
+            contexts. At the inference level, Clip Context periodically clears older interaction
+            history to reset inertial patterns while retaining enough recent state for exploitation.
+          </p>
+        </div>
+        <figure class="paper-figure">
+          <img src="./static/images/paper/dpo_method.png"
+               alt="Context Preference Learning and Clip Context method overview."/>
+          <figcaption>
+            Our framework combines reward-free context preference learning with a training-free
+            clip-context inference strategy.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Context Preference Learning</h2>
+          <p>
+            CPL constructs long-short context preference pairs from the same state. Actions
+            generated with shorter contexts tend to exhibit weaker inertia, so they serve as
+            preferred responses over actions generated from longer histories.
+          </p>
+          <p>
+            The preference signal is reward-free: it does not require ground-truth task success,
+            human annotation, or environment-specific reward modeling.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Clip Context</h2>
+          <p>
+            Clip Context clears older interaction turns at fixed intervals, creating cycles of
+            exploration and exploitation. The agent can use recent context, but accumulated
+            self-imitation is periodically broken.
+          </p>
+          <p>
+            Unlike sliding windows, clipping preserves long append-only segments between resets,
+            which makes the method naturally compatible with KV cache reuse.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate across eight agent environments that cover navigation, web interaction,
+            text games, reasoning-dependent strategic games, and crafting scenarios. This makes the
+            setting broad enough to test both exploration and exploitation under multi-turn
+            interaction histories.
+          </p>
+        </div>
+        <div class="env-grid">
+          <div class="env-card"><strong>MZ</strong><span>Maze navigation</span></div>
+          <div class="env-card"><strong>ALF</strong><span>Embodied household tasks</span></div>
+          <div class="env-card"><strong>WS</strong><span>WebShop interaction</span></div>
+          <div class="env-card"><strong>TC</strong><span>TextCraft planning</span></div>
+          <div class="env-card"><strong>FL</strong><span>FrozenLake navigation</span></div>
+          <div class="env-card"><strong>HM</strong><span>Hangman reasoning</span></div>
+          <div class="env-card"><strong>2048</strong><span>Strategic game play</span></div>
+          <div class="env-card"><strong>RH</strong><span>RushHour puzzle solving</span></div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results setup. -->
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <div class="content has-text-justified">
+          <p>
+            Across eight agent environments, Clip Context consistently improves over long-context
+            and window-context baselines. Combined with CPL, the average score reaches
+            <strong>72.5%</strong>, compared with <strong>68.9%</strong> for base Clip Context.
+          </p>
+          <figure class="paper-figure">
+            <img src="./static/images/paper/scaling.png"
+                 alt="Performance scaling curves across eight agent environments."/>
+            <figcaption>
+              Clip Context improves performance across environments as the context budget grows.
+            </figcaption>
+          </figure>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+              <caption>
+                Comparison of CPL finetuning and context management methods on eight agent tasks.
+              </caption>
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Variant</th>
+                  <th>Context</th>
+                  <th>MZ</th>
+                  <th>ALF</th>
+                  <th>WS</th>
+                  <th>TC</th>
+                  <th>FL</th>
+                  <th>HM</th>
+                  <th>2048</th>
+                  <th>RH</th>
+                  <th>Avg</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="group-cell" rowspan="8"><span>Qwen3-8B</span></td>
+                  <td class="group-cell" rowspan="4"><span>Base</span></td>
+                  <td>Window</td>
+                  <td>74.0</td><td><u>68.2</u></td><td>40.0</td><td>71.3</td><td><strong>67.5</strong></td><td><u>85.3</u></td><td>66.9</td><td>45.8</td><td>64.9</td>
+                </tr>
+                <tr class="context-row">
+                  <td>Long</td>
+                  <td>39.0</td><td>61.0</td><td>23.3</td><td>67.5</td><td>63.5</td><td>75.1</td><td>65.6</td><td>40.3</td><td>54.4</td>
+                </tr>
+                <tr>
+                  <td>Summarization</td>
+                  <td><u>78.0</u></td><td><strong>71.0</strong></td><td><strong>46.5</strong></td><td><u>80.5</u></td><td><u>64.6</u></td><td><strong>88.9</strong></td><td><u>70.6</u></td><td><strong>50.4</strong></td><td><u>68.8</u></td>
+                </tr>
+                <tr class="context-row">
+                  <td>Clip</td>
+                  <td><strong>83.0</strong></td><td>67.7</td><td><u>44.4</u></td><td><strong>82.3</strong></td><td>67.5</td><td>85.1</td><td><strong>70.9</strong></td><td><u>50.2</u></td><td><strong>68.9</strong></td>
+                </tr>
+                <tr>
+                  <td class="group-cell" rowspan="4"><span>CPL</span></td>
+                  <td>Window</td>
+                  <td>78.0</td><td>67.5</td><td>44.9</td><td>74.5</td><td>68.2</td><td><u>89.5</u></td><td><u>72.4</u></td><td>44.3</td><td>67.4</td>
+                </tr>
+                <tr class="context-row">
+                  <td>Long</td>
+                  <td>44.0</td><td>59.5</td><td>40.5</td><td>65.5</td><td>70.0</td><td>77.7</td><td>70.2</td><td>44.8</td><td>59.0</td>
+                </tr>
+                <tr>
+                  <td>Summarization</td>
+                  <td><u>87.5</u></td><td><strong>71.5</strong></td><td><u>52.2</u></td><td><u>75.2</u></td><td><u>69.4</u></td><td><strong>89.9</strong></td><td>71.6</td><td><u>49.1</u></td><td><u>70.8</u></td>
+                </tr>
+                <tr class="context-row">
+                  <td>Clip</td>
+                  <td><strong>91.5</strong></td><td><u>70.3</u></td><td><strong>54.9</strong></td><td><strong>83.0</strong></td><td>68.4</td><td>87.5</td><td><strong>73.0</strong></td><td><strong>51.1</strong></td><td><strong>72.5</strong></td>
+                </tr>
+
+                <tr>
+                  <td class="group-cell" rowspan="8"><span>Llama3.1-8B</span></td>
+                  <td class="group-cell" rowspan="4"><span>Base</span></td>
+                  <td>Window</td>
+                  <td>79.7</td><td>21.5</td><td><strong>45.4</strong></td><td><u>68.2</u></td><td><strong>58.6</strong></td><td><u>87.0</u></td><td><strong>70.1</strong></td><td>38.0</td><td><u>58.6</u></td>
+                </tr>
+                <tr class="context-row">
+                  <td>Long</td>
+                  <td>48.0</td><td>20.3</td><td>29.1</td><td>49.1</td><td>54.0</td><td>79.9</td><td>68.1</td><td><u>38.2</u></td><td>48.3</td>
+                </tr>
+                <tr>
+                  <td>Summarization</td>
+                  <td><u>81.5</u></td><td><strong>31.5</strong></td><td>37.6</td><td>62.7</td><td>53.8</td><td><strong>88.3</strong></td><td><u>69.8</u></td><td>38.0</td><td>57.9</td>
+                </tr>
+                <tr class="context-row">
+                  <td>Clip</td>
+                  <td><strong>82.5</strong></td><td><u>28.5</u></td><td><u>43.6</u></td><td><strong>70.0</strong></td><td><u>55.9</u></td><td>84.1</td><td>68.7</td><td><strong>40.5</strong></td><td><strong>59.2</strong></td>
+                </tr>
+                <tr>
+                  <td class="group-cell" rowspan="4"><span>CPL</span></td>
+                  <td>Window</td>
+                  <td><u>79.0</u></td><td><u>25.3</u></td><td><strong>44.9</strong></td><td><strong>72.0</strong></td><td>55.4</td><td><u>86.5</u></td><td>67.8</td><td>38.9</td><td><u>58.7</u></td>
+                </tr>
+                <tr class="context-row">
+                  <td>Long</td>
+                  <td>46.5</td><td>18.8</td><td>32.3</td><td>46.5</td><td>52.4</td><td>78.5</td><td><strong>69.7</strong></td><td>38.8</td><td>47.9</td>
+                </tr>
+                <tr>
+                  <td>Summarization</td>
+                  <td>77.2</td><td><strong>31.5</strong></td><td>39.5</td><td>65.0</td><td><u>56.5</u></td><td><strong>88.6</strong></td><td>68.0</td><td><strong>40.4</strong></td><td>58.3</td>
+                </tr>
+                <tr class="context-row">
+                  <td>Clip</td>
+                  <td><strong>82.3</strong></td><td>31.5</td><td><u>43.8</u></td><td><u>70.0</u></td><td><strong>56.8</strong></td><td>86.3</td><td><u>68.6</u></td><td><u>39.3</u></td><td><strong>59.8</strong></td>
+                </tr>
+
+                <tr>
+                  <td class="group-cell" rowspan="4"><span>GPT-4o-mini</span></td>
+                  <td class="group-cell" rowspan="4"><span>/</span></td>
+                  <td>Window</td>
+                  <td><strong>82.0</strong></td><td>52.5</td><td>37.8</td><td>55.0</td><td>89.4</td><td><u>97.3</u></td><td><u>73.4</u></td><td>40.2</td><td>66.0</td>
+                </tr>
+                <tr class="context-row">
+                  <td>Long</td>
+                  <td>62.0</td><td><strong>62.0</strong></td><td><strong>45.5</strong></td><td>52.0</td><td>87.2</td><td>96.8</td><td>72.9</td><td>38.4</td><td>64.6</td>
+                </tr>
+                <tr>
+                  <td>Summarization</td>
+                  <td>71.0</td><td><u>56.2</u></td><td><u>42.2</u></td><td><u>66.7</u></td><td><u>91.2</u></td><td><strong>98.9</strong></td><td>72.9</td><td><u>40.7</u></td><td><u>67.5</u></td>
+                </tr>
+                <tr class="context-row">
+                  <td>Clip</td>
+                  <td><u>81.0</u></td><td>54.5</td><td>39.8</td><td><strong>81.8</strong></td><td><strong>92.0</strong></td><td>98.9</td><td><strong>75.5</strong></td><td><strong>45.3</strong></td><td><strong>71.1</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+    <!-- Deep Research. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Deep Research Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We also evaluate long-term reasoning on BrowseComp, where the agent must balance
+            information gathering, search depth, and the risk of answering too early. Clip-12to6
+            obtains the best score among the tested settings and remains competitive with
+            summarization while avoiding extra summary-generation overhead.
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth research-table">
+            <caption>
+              Context management methods on BrowseComp. Proactive rate measures how often the
+              agent answers before the step limit.
+            </caption>
+            <thead>
+              <tr>
+                <th>Method</th>
+                <th>Score</th>
+                <th>Proactive Rate</th>
+                <th>Proactive Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Window-6</td><td>25.0 &plusmn; 1.7</td><td>27.3%</td><td>55.7</td></tr>
+              <tr><td>Window-9</td><td>23.4 &plusmn; 1.5</td><td>26.6%</td><td>58.8</td></tr>
+              <tr><td>Window-12</td><td>24.2 &plusmn; 1.8</td><td>25.4%</td><td>58.5</td></tr>
+              <tr><td>Clip-12to0</td><td>25.0 &plusmn; 1.8</td><td>29.3%</td><td>56.0</td></tr>
+              <tr><td>Sum-12to0</td><td>27.7 &plusmn; 2.0</td><td>63.7%</td><td>37.4</td></tr>
+              <tr><td><strong>Clip-12to6</strong></td><td><strong>29.3 &plusmn; 1.5</strong></td><td>30.9%</td><td>61.0</td></tr>
+              <tr><td>Sum-12to6</td><td>28.1 &plusmn; 1.6</td><td>30.8%</td><td>63.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="key-points">
+          <div class="key-point">
+            <strong>Retain some objective history</strong>
+            <span>Clip-12to6 improves over fully clearing history, indicating that inertia control and information preservation must be balanced.</span>
+          </div>
+          <div class="key-point">
+            <strong>Summaries can be over-confident</strong>
+            <span>Sum-12to0 answers much more proactively, but its proactive answer accuracy is substantially lower.</span>
+          </div>
+          <div class="key-point">
+            <strong>Clipping is lightweight</strong>
+            <span>Clip-12to6 is comparable to Sum-12to6 without requiring a separate model-generated summary.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Deep Research. -->
+
+    <!-- Analysis. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content">
+          <h2 class="title is-3">Attention Pattern Analysis</h2>
+          <p>
+            The two mitigation mechanisms affect attention differently. Clip Context directly
+            changes the available history and reduces diagonal attention by removing accumulated
+            assistant traces. Context Preference Learning reduces diagonal attention while keeping
+            overall assistant attention comparatively stable, suggesting that the model learns to
+            use history less positionally and less imitatively.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <figure class="paper-figure compact-figure">
+          <img src="./static/images/paper/atten_ratio/clip_comparison.png"
+               alt="Clip Context attention comparison."/>
+          <figcaption>Clip Context reduces diagonal attention and increases system attention.</figcaption>
+        </figure>
+      </div>
+      <div class="column">
+        <figure class="paper-figure compact-figure">
+          <img src="./static/images/paper/atten_ratio/dpo_comparison.png"
+               alt="Context Preference Learning attention comparison."/>
+          <figcaption>CPL reduces diagonal attention across context management methods.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <!--/ Analysis. -->
+
+    <!-- Efficiency. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Computational Efficiency</h2>
+        <div class="content has-text-justified">
+          <p>
+            Clip Context is not only a behavioral intervention. Because it preserves append-only
+            generation between clip operations, it can reuse KV cache more effectively than
+            sliding-window truncation. In our speed benchmark, Clip achieves a 2-7x prefill speedup
+            over window methods while maintaining strong task performance.
+          </p>
+        </div>
+        <figure class="paper-figure compact-figure">
+          <img src="./static/images/paper/atten_ratio/speed_comparison.png"
+               alt="Prefill and total time comparison for context methods."/>
+          <figcaption>
+            Clip Context reduces prefill time substantially and keeps total inference time
+            competitive with or better than window-based context management.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <!--/ Efficiency. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{wan2026mitigating,
+  author    = {Wan, Yang and Cao, Zheng and Zhang, Zhenhao and Zeng, Zhengwen and Shen, Shuheng and Meng, Changhua and Zhu, Linchao},
+  title     = {Mitigating Conversational Inertia in Multi-Turn Agents},
+  journal   = {arXiv preprint arXiv:2602.03664},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2602.03664">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Kelatte/mitigating-conversational-inertia" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from the <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies project page</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
