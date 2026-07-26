@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Project page for SeekJudge: A Practical Reward Framework for Reinforcement Learning in Computer-Use Agents.">
+  <meta name="keywords" content="Computer-Use Agents, Reward Model, LLM Judge, Reinforcement Learning, GUI Agents">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeekJudge: A Practical Reward Framework for RL in Computer-Use Agents</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SeekJudge: A Practical Reward Framework for Reinforcement Learning in Computer-Use Agents</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://yangwan7.github.io/">Yang Wan</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Zhenhao Zhang<sup>2</sup>,</span>
+            <span class="author-block">
+              Jierui Wang<sup>1</sup>,</span>
+            <span class="author-block">
+              Linchao Zhu<sup>1</sup><sup>*</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>2</sup>University of Rochester</span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Corresponding author</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Preprint</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/ZJUSCL/SeekJudge"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/ZJUSCL/SeekJudge-9B"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-brain"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!-- Benchmark Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/ZJUSCL/CUAStepBench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Benchmark</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-vcentered teaser-block">
+      <div class="column is-5 teaser-text">
+        <p class="teaser-kicker">Model-based reward</p>
+        <h2 class="title is-3 teaser-title">
+          A model-based reward that matches rule-based supervision in online RL.
+        </h2>
+        <p class="teaser-copy">
+          SeekJudge is the first practical model-based reward to match or surpass native rule-based
+          supervision on downstream test success, while running hundreds of times cheaper than a
+          closed-source large model and keeping a small per-call context.
+        </p>
+      </div>
+      <div class="column is-7">
+        <figure class="paper-figure teaser-figure">
+          <img src="./static/images/paper/teaser.png"
+               alt="SeekJudge advantages in online RL, offline evaluation, and cost."/>
+          <figcaption>
+            <strong>(a)</strong> RL success rate under each reward for UI-TARS 1.5 7B on Impress
+            (dashed = test set). <strong>(b)</strong> Offline F1 on three benchmarks.
+            <strong>(c)</strong> Cost to judge 5K trajectories, roughly one RL run.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified abstract-content">
+          <p>
+            Deciding whether a trajectory actually fulfills its instruction governs how we measure
+            computer-use agents on long-horizon graphical-user-interface tasks and how we train them
+            with reinforcement learning. This judgment has long relied on rule-based evaluation, which
+            struggles to align with human intention and goes stale when an app updates or its online
+            content drifts. Existing model-based judges attempt to address these problems but still
+            leave a performance gap to rule-based evaluation. We propose the <strong>SeekJudge</strong>
+            framework, in which four role-specialized agents, a Condense, a Ground, a Seek and an
+            Analyze agent, reach a verdict through a Seek&ndash;Analyze loop over the trajectory. A
+            seed-calibrated distillation pipeline trains one specialized 9B model to serve as the
+            shared backbone for all four agents. Measured by downstream success rate on held-out RL
+            test goals, SeekJudge is the first practical model-based reward to match or surpass native
+            rule-based supervision in online RL. Beyond accuracy, SeekJudge provides step-level
+            judgments, runs far cheaper than a closed-source large model, and keeps a small per-call
+            context that scales to much longer trajectories.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Motivation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We revisit what it takes to judge a long trajectory and frame it as the composition of two
+            subtasks: localization, which identifies the image holding the decisive evidence, and
+            extraction, which reads the decisive detail from that image accurately.
+          </p>
+          <p>
+            We observe that, even when the decisive image is always provided, adding more images from
+            the same trajectory to a single forward pass degrades performance increasingly with their
+            number. Competing content rather than context length drives the drop: as trajectory images
+            accumulate, precision collapses while recall barely moves, so the judge reads accumulating
+            plausible-looking details as evidence of success and the one decisive screenshot is
+            drowned out.
+          </p>
+        </div>
+        <figure class="paper-figure">
+          <img src="./static/images/paper/multiimg.png"
+               alt="Multi-image information noise: accuracy, precision, and recall as images accumulate."/>
+          <figcaption>
+            Padding the input with real trajectory images (blue) degrades the verdict as their number
+            grows, while padding with content-free images of equal token budget (red) does not.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <!--/ Motivation. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">The SeekJudge Framework</h2>
+        <div class="content has-text-justified section-lead">
+          <p>
+            SeekJudge realizes this decomposition as a multi-agent framework whose four agents share
+            one backbone model. The Condense and Ground agents first compress the whole trajectory
+            into a compact timeline. The Seek agent takes this timeline as its initial context and runs
+            a Seek&ndash;Analyze loop, querying the Analyze agent over several rounds for the evidence
+            it still needs before emitting the final judgment.
+          </p>
+        </div>
+        <figure class="paper-figure">
+          <img src="./static/images/paper/framework.png"
+               alt="The SeekJudge framework: Condense, Ground, Seek, and Analyze agents on one shared backbone."/>
+          <figcaption>
+            The SeekJudge framework, where four agents share one backbone model.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Seek agent</h2>
+          <p>
+            The controller and the only agent that carries state across a run. It reads the condensed
+            timeline and judges whether the accumulated evidence settles the instruction. When it is
+            enough, it emits the verdict; when not, it names a single step and image id to inspect and
+            sends a focused question to the Analyze agent.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Analyze agent</h2>
+          <p>
+            Answers one focused question about the single screenshot the Seek agent names and returns
+            the decisive detail as text. It is stateless: every call starts fresh with only that
+            question and image, so it acts as a tool the Seek agent invokes for a detail.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Condense agent</h2>
+          <p>
+            For each step it reads the two screenshots before and after the action and writes a few
+            lines describing the state transition, the T entry of the timeline, turning the whole
+            trajectory into a compact text timeline before the loop begins.
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content method-panel">
+          <h2 class="title is-4">Ground agent</h2>
+          <p>
+            For each step it reads the post-action screenshot together with the raw action the actor
+            executed, such as <code>click 128,453</code>, and identifies from the screenshot which
+            element those coordinates actually hit, the A entry of the timeline.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="key-points">
+          <div class="key-point">
+            <strong>Robust to distraction</strong>
+            <span>Each call sees few images yet reads them at high fidelity, minimizing interference from other images and observations.</span>
+          </div>
+          <div class="key-point">
+            <strong>Scales to long trajectories</strong>
+            <span>Decoupling localization from extraction keeps each call on a much smaller context, 4&ndash;6&times; smaller than existing reward-model methods.</span>
+          </div>
+          <div class="key-point">
+            <strong>Adaptive compute</strong>
+            <span>The Seek agent issues only as many extraction calls as a case needs, so an easy trajectory settles in a few rounds while a longer one triggers more.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Benchmark. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">CUAStepBench</h2>
+        <div class="content has-text-justified">
+          <p>
+            To support step-level evaluation we build CUAStepBench, a human-annotated benchmark of 278
+            tasks over 177 applications. Every trajectory carries a human verdict, and beyond that
+            verdict each step receives a label. We further build CUAStepBench-Long, a long-horizon
+            extension of 18 trajectories with a mean length of 272 steps and dense human annotation.
+          </p>
+        </div>
+        <div class="env-grid">
+          <div class="env-card"><strong>278</strong><span>Annotated tasks</span></div>
+          <div class="env-card"><strong>177</strong><span>Applications</span></div>
+          <div class="env-card"><strong>3</strong><span>Platforms: Web, OS, Android</span></div>
+          <div class="env-card"><strong>Step</strong><span>Dense per-step labels</span></div>
+        </div>
+      </div>
+    </div>
+    <!--/ Benchmark. -->
+
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Reinforcement Learning Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Each reward model drives RL training of an actor across three task domains. SeekJudge
+            matches or exceeds native rule-based supervision on test success, and beats the other two
+            model-based frameworks on both training and test reward across both actor backbones and
+            all three environments.
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+            <caption>
+              Test success rate (%) of policies trained under each reward model, UI-TARS 1.5 7B actor.
+            </caption>
+            <thead>
+              <tr>
+                <th>Reward</th>
+                <th>Chrome</th>
+                <th>Impress</th>
+                <th>OS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Rule-based</td><td>12.75</td><td>30.43</td><td>25.56</td></tr>
+              <tr><td>CUAJudge (GPT-5-mini)</td><td><u>13.91</u></td><td><u>33.62</u></td><td><u>26.11</u></td></tr>
+              <tr><td>OS-Themis</td><td>10.14</td><td>32.46</td><td>25.00</td></tr>
+              <tr><td><strong>SeekJudge</strong></td><td><strong>16.23</strong></td><td><strong>36.81</strong></td><td><strong>28.89</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Offline Reward Benchmark</h2>
+        <div class="content has-text-justified">
+          <p>
+            Training the SeekJudge-9B specialist sharpens the trajectory verdict and the step-level
+            reading together. On CUAStepBench it lifts trajectory F1 over the Qwen3VL-8B base and
+            surpasses the closed-source CUAJudge despite its GPT-5-mini calls.
+          </p>
+        </div>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth results-table">
+            <caption>
+              Trajectory- and step-level F1 (%) on CUAStepBench. Step-level metrics are with respect
+              to error steps.
+            </caption>
+            <thead>
+              <tr>
+                <th>Framework</th>
+                <th>Model</th>
+                <th>Trajectory F1</th>
+                <th>Step F1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Codex</td><td>GPT-5.5</td><td>77.7</td><td>&ndash;</td></tr>
+              <tr><td>CUAJudge</td><td>GPT-5-mini</td><td>68.8</td><td>38.0</td></tr>
+              <tr><td>CUAJudge</td><td>Qwen3VL-8B</td><td>66.9</td><td>21.3</td></tr>
+              <tr><td>OS-Themis</td><td>Qwen3VL-8B</td><td>59.5</td><td>15.6</td></tr>
+              <tr><td>SeekJudge</td><td>Qwen3VL-8B</td><td><u>70.8</u></td><td><u>27.3</u></td></tr>
+              <tr><td><strong>SeekJudge</strong></td><td><strong>SeekJudge-9B</strong></td><td><strong>74.5</strong></td><td><strong>38.1</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="key-points">
+          <div class="key-point">
+            <strong>Lowest inference cost</strong>
+            <span>SeekJudge judges 5K trajectories for $24.6, against $100 for CUAJudge and $5,313 for the agentic Codex baseline.</span>
+          </div>
+          <div class="key-point">
+            <strong>Small, flat context</strong>
+            <span>Peak context stays near 12K tokens at 52 images, where OS-Themis reaches ~48K and CUAJudge ~80K.</span>
+          </div>
+          <div class="key-point">
+            <strong>Denser training signal</strong>
+            <span>A continuous score with per-step terms gives a graded reward, improving RL test success over a binary pass-or-fail bit.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Results. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{wan2026seekjudge,
+  author    = {Wan, Yang and Zhang, Zhenhao and Wang, Jierui and Zhu, Linchao},
+  title     = {SeekJudge: A Practical Reward Framework for Reinforcement Learning in Computer-Use Agents},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/ZJUSCL/SeekJudge" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website template borrowed from the <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies project page</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
