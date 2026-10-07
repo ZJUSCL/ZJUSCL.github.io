@@ -42,13 +42,16 @@
             <span class="author-block">
               Jierui Wang<sup>1</sup>,</span>
             <span class="author-block">
+              Xiangxin Zhou<sup>3</sup>,</span>
+            <span class="author-block">
               Linchao Zhu<sup>1</sup><sup>*</sup>
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>Zhejiang University,</span>
-            <span class="author-block"><sup>2</sup>University of Rochester</span>
+            <span class="author-block"><sup>2</sup>University of Rochester,</span>
+            <span class="author-block"><sup>3</sup>Tencent</span>
           </div>
 
           <div class="is-size-6 publication-authors">
@@ -131,51 +134,30 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-vcentered teaser-block">
-      <div class="column is-5 teaser-text">
-        <p class="teaser-kicker">Model-based reward</p>
-        <h2 class="title is-3 teaser-title">
-          A model-based reward that matches rule-based supervision in online RL.
-        </h2>
-        <p class="teaser-copy">
-          SeekJudge is the first practical model-based reward to match or surpass native rule-based
-          supervision on downstream test success, while running hundreds of times cheaper than a
-          closed-source large model and keeping a small per-call context.
-        </p>
-      </div>
-      <div class="column is-7">
-        <figure class="paper-figure teaser-figure">
-          <img src="./static/images/paper/teaser.png"
-               alt="SeekJudge advantages in online RL, offline evaluation, and cost."/>
-          <figcaption>
-            <strong>(a)</strong> RL success rate under each reward for UI-TARS 1.5 7B on Impress
-            (dashed = test set). <strong>(b)</strong> Offline F1 on three benchmarks.
-            <strong>(c)</strong> Cost to judge 5K trajectories, roughly one RL run.
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified abstract-content">
           <p>
-            Deciding whether a trajectory actually fulfills its instruction governs how we measure
+            Deciding whether a trajectory actually fulfills its instruction determines how we measure
             computer-use agents on long-horizon graphical-user-interface tasks and how we train them
-            with reinforcement learning. This judgment has long relied on rule-based evaluation, which
-            struggles to align with human intention and goes stale when an app updates or its online
-            content drifts. Existing model-based judges attempt to address these problems but still
-            leave a performance gap to rule-based evaluation. We propose the <strong>SeekJudge</strong>
-            framework, in which four role-specialized agents, a Condense, a Ground, a Seek and an
-            Analyze agent, reach a verdict through a Seek&ndash;Analyze loop over the trajectory. A
-            seed-calibrated distillation pipeline trains one specialized 9B model to serve as the
-            shared backbone for all four agents. Measured by downstream success rate on held-out RL
-            test goals, SeekJudge is the first practical model-based reward to match or surpass native
-            rule-based supervision in online RL. Beyond accuracy, SeekJudge provides step-level
-            judgments, runs far cheaper than a closed-source large model, and keeps a small per-call
-            context that scales to much longer trajectories.
+            with reinforcement learning (RL). This judgment has long relied on rule-based evaluation.
+            Rule-based evaluation often disagrees with human intention and becomes outdated when an
+            app updates or its online content drifts. Existing model-based judges attempt to address
+            these problems, but their judging accuracy remains limited. We propose the
+            <strong>SeekJudge</strong> framework, whose four agents, a Condense, a Ground, a Seek and
+            an Analyze agent, reach a verdict through a Seek&ndash;Analyze loop over the trajectory.
+            To train a specialized model on densely labeled trajectories, we propose a seed-driven
+            distillation pipeline that expands a few human-labeled seed trajectories into 10K such
+            trajectories. To evaluate step-level judgments, we build CUAStepBench, a human-annotated
+            benchmark that pairs trajectory verdicts with dense step labels. Beyond accuracy,
+            SeekJudge costs far less than a closed-source large model. We further propose rollout
+            overlap, a reward-server design that reduces the overhead of a reward model in RL
+            training. To our knowledge, SeekJudge is the first model-based reward to match or surpass
+            native rule-based reward in online RL, measured by downstream success rate on held-out RL
+            test goals. In offline judging, SeekJudge-9B also exceeds rule-based evaluation by 9.5 F1
+            on AgentRewardBench.
           </p>
         </div>
       </div>
@@ -280,7 +262,7 @@
         <div class="content method-panel">
           <h2 class="title is-4">Ground agent</h2>
           <p>
-            For each step it reads the post-action screenshot together with the raw action the actor
+            For each step it reads the pre-action screenshot together with the raw action the actor
             executed, such as <code>click 128,453</code>, and identifies from the screenshot which
             element those coordinates actually hit, the A entry of the timeline.
           </p>
@@ -315,8 +297,7 @@
           <p>
             To support step-level evaluation we build CUAStepBench, a human-annotated benchmark of 278
             tasks over 177 applications. Every trajectory carries a human verdict, and beyond that
-            verdict each step receives a label. We further build CUAStepBench-Long, a long-horizon
-            extension of 18 trajectories with a mean length of 272 steps and dense human annotation.
+            verdict each step receives a label.
           </p>
         </div>
         <div class="env-grid">
@@ -335,10 +316,10 @@
         <h2 class="title is-3">Reinforcement Learning Results</h2>
         <div class="content has-text-justified">
           <p>
-            Each reward model drives RL training of an actor across three task domains. SeekJudge
-            matches or exceeds native rule-based supervision on test success, and beats the other two
-            model-based frameworks on both training and test reward across both actor backbones and
-            all three environments.
+            Each reward model drives RL training of an actor across three task domains. Averaged over
+            the six backbone-domain settings, SeekJudge exceeds native rule-based reward by 3.3 points
+            of test success, and among model-based rewards it gives the highest average test success
+            on both actor backbones.
           </p>
         </div>
         <div class="table-container">
@@ -356,9 +337,9 @@
             </thead>
             <tbody>
               <tr><td>Rule-based</td><td>12.75</td><td>30.43</td><td>25.56</td></tr>
-              <tr><td>CUAJudge (GPT-5-mini)</td><td><u>13.91</u></td><td><u>33.62</u></td><td><u>26.11</u></td></tr>
+              <tr><td>CUAJudge (GPT-5-mini)</td><td><u>13.91</u></td><td><u>33.48</u></td><td><u>26.11</u></td></tr>
               <tr><td>OS-Themis</td><td>10.14</td><td>32.46</td><td>25.00</td></tr>
-              <tr><td><strong>SeekJudge</strong></td><td><strong>16.23</strong></td><td><strong>36.81</strong></td><td><strong>28.89</strong></td></tr>
+              <tr><td><strong>SeekJudge</strong></td><td><strong>16.23</strong></td><td><strong>38.84</strong></td><td><strong>28.89</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -371,7 +352,7 @@
         <div class="content has-text-justified">
           <p>
             Training the SeekJudge-9B specialist sharpens the trajectory verdict and the step-level
-            reading together. On CUAStepBench it lifts trajectory F1 over the Qwen3VL-8B base and
+            reading together. On CUAStepBench it lifts trajectory F1 over the Qwen3-VL-8B base and
             surpasses the closed-source CUAJudge despite its GPT-5-mini calls.
           </p>
         </div>
@@ -390,19 +371,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>Codex</td><td>GPT-5.5</td><td>77.7</td><td>&ndash;</td></tr>
-              <tr><td>CUAJudge</td><td>GPT-5-mini</td><td>68.8</td><td>38.0</td></tr>
-              <tr><td>CUAJudge</td><td>Qwen3VL-8B</td><td>66.9</td><td>21.3</td></tr>
-              <tr><td>OS-Themis</td><td>Qwen3VL-8B</td><td>59.5</td><td>15.6</td></tr>
-              <tr><td>SeekJudge</td><td>Qwen3VL-8B</td><td><u>70.8</u></td><td><u>27.3</u></td></tr>
-              <tr><td><strong>SeekJudge</strong></td><td><strong>SeekJudge-9B</strong></td><td><strong>74.5</strong></td><td><strong>38.1</strong></td></tr>
+              <tr><td>Human expert</td><td>&ndash;</td><td>82.2</td><td>&ndash;</td></tr>
+              <tr><td colspan="4"><em>Large models</em></td></tr>
+              <tr><td>Codex</td><td>GPT-5.5</td><td>77.9</td><td>&ndash;</td></tr>
+              <tr><td>CUAJudge</td><td>GPT-5-mini</td><td>68.5</td><td>37.9</td></tr>
+              <tr><td>SeekJudge</td><td>DeepSeek-V4-Pro-0423 + Gemini-3.0-Flash</td><td>74.9</td><td>45.7</td></tr>
+              <tr><td colspan="4"><em>Small models</em></td></tr>
+              <tr><td>OSReward</td><td>OS-Shepherd-9B</td><td>68.4</td><td>&ndash;</td></tr>
+              <tr><td>CUAJudge</td><td>Qwen3-VL-8B</td><td>66.7</td><td>21.2</td></tr>
+              <tr><td>OS-Themis</td><td>Qwen3-VL-8B</td><td>59.8</td><td>15.5</td></tr>
+              <tr><td>SeekJudge</td><td>Qwen3-VL-8B</td><td><u>71.3</u></td><td><u>27.3</u></td></tr>
+              <tr><td><strong>SeekJudge</strong></td><td><strong>SeekJudge-9B</strong></td><td><strong>74.2</strong></td><td><strong>38.0</strong></td></tr>
             </tbody>
           </table>
         </div>
         <div class="key-points">
           <div class="key-point">
             <strong>Lowest inference cost</strong>
-            <span>SeekJudge judges 5K trajectories for $24.6, against $100 for CUAJudge and $5,313 for the agentic Codex baseline.</span>
+            <span>SeekJudge judges at the lowest cost at every image count. CUAJudge incurs extra GPT-5-mini calls, and the agentic Codex baseline costs two orders of magnitude more.</span>
           </div>
           <div class="key-point">
             <strong>Small, flat context</strong>
@@ -425,7 +411,7 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{wan2026seekjudge,
-  author    = {Wan, Yang and Zhang, Zhenhao and Wang, Jierui and Zhu, Linchao},
+  author    = {Wan, Yang and Zhang, Zhenhao and Wang, Jierui and Zhou, Xiangxin and Zhu, Linchao},
   title     = {SeekJudge: A Practical Reward Framework for Reinforcement Learning in Computer-Use Agents},
   journal   = {arXiv preprint arXiv:2607.23263},
   year      = {2026},
